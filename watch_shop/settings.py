@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'cloudinary',
 
     # Custom apps
-    'review',
+    'products',
 ]
 
 MIDDLEWARE = [
