@@ -4,7 +4,7 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
-STATUS = ((0, "Out of stock"), (1, "In stock"))
+STATUS = ((0, "Draft"), (1, "Available"))
 
 class Product(models.Model):
     title = models.CharField(max_length=200)
