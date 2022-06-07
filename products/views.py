@@ -6,7 +6,7 @@ from .models import Product
 
 class ProductList(generic.ListView):
     model = Product
-    queryset = Product.objects.filter(satus=1.order_by('-created_on'))
+    queryset = Product.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 6
     
