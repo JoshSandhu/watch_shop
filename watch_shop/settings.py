@@ -35,6 +35,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["watch_shop.herokuapp.com", "localhost"]
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-joshsandhu-watchshop-clolftbjv6b.ws-eu46.gitpod.io']
 
 # Application definition
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'django_summernote',
 
     # Custom apps
     'products',
