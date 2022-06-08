@@ -1,21 +1,22 @@
 {% extends 'base.html' %} {% block content %}
 
+{% load crispy_forms_tags %}
+
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <!-- Product title goes in these h1 tags -->
-                <h1 class="product-title">
-                </h1>
+                <h1 class="product-title">{{ product.title }}</h1>
                 <!-- Product brand goes before the | the post's created date goes after -->
-                <p class="product-subtitle"> | </p>
+                <p class="product-subtitle">{{ product.brand }} | {{ product.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->
                 {% if "placeholder" in product.featured_image.url %}
-                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                <img src="https://res.cloudinary.com/dr2fjw6jw/image/upload/v1654635918/watch_selection.jpg" alt="A selection of luxury watches in a smart case." width="100%">
                 {% else %}
-                <img src="" width="100%">
+                <img src=" {{ product.featured_image.url }}" width="100%">
                 {% endif %}
             </div>
         </div>
@@ -27,18 +28,19 @@
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
                 <!-- The product description goes inside the card-text. -->
-                <p class="card-text "></p>
+                <p class="card-text ">
+                    {{ product.content | safe }}
+                </p>
                 <div class="row">
-
                     <div class="col-1">
                         <!-- The number of likes goes before the closing strong tag -->
-                        <strong class="text-secondary"><i class="far fa-heart"></i> </strong>
+                        <strong class="text-secondary"><i class="far fa-heart"></i> {{ product.number_of_likes }} </strong>
                     </div>
                     <div class="col-1">
-                        {% with reviews.count as total_reviews %}
+                        {% with review.count as total_reviews %}
                         <strong class="text-secondary"><i class="far fa-reviews"></i>
                             <!-- Our total_reviews variable goes before the closing strong tag -->
-                        </strong>
+                        {{ total_reviews }}</strong>
                         {% endwith %}
                     </div>
                 </div>
@@ -55,26 +57,42 @@
             <h3>Reviews:</h3>
             <div class="card-body">
                 <!-- We want a for loop inside the tags to iterate through each review in reviews -->
-                {% %}
+                {% for review in reviews %}
                 <div class="reviews" style="padding: 10px;">
                     <p class="font-weight-bold">
                         <!-- The reviewers name goes here. Check the model if you're not sure what that is -->
-                        {{ }}
+                        {{ review.name }}
                         <span class=" text-muted font-weight-normal">
                             <!-- The review created date goes here -->
-                            {{ }}
+                            {{ review.created_on }}
                         </span> wrote:
                     </p>
-                    <!-- The body of the review goes before the | -->
-                    {{  | linebreaks }}
+                    {{ review.body | linebreaks }}
                 </div>
                 <!-- Our for loop ends here -->
-                {% %}
+                {% endfor %}
             </div>
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
-                <!-- For later -->
+                {% if reviewed %}
+                <div class="alert alert-success" role="alert">
+                    Your review is awaiting approval. Thank you.
+                </div>
+                {% else %}
+
+                {% if user.is_authenticated %}
+
+                <h3>Purchased this item? Please leave a review.</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="post" style="margin-top: 1.3em;">
+                    {{ review_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" class=""btn btn-signup btn-lg>Submit</button>
+                </form>
+
+                {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
