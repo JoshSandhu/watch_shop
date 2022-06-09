@@ -61,6 +61,9 @@ INSTALLED_APPS = [
     # Custom apps
     'home',
     'products',
+    'cart',
+    'checkout',
+    
 ]
 
 SITE_ID = 1

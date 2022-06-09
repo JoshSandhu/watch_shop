@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/23a0e3507f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
     </script>
@@ -51,6 +52,22 @@
                     </li>
                     {% endif %}
                 </ul>
+                <li class="list-inline-item">
+                    <a class="{% if total %}text-black-orange fs-5 fw-bold{% else %}text-black{% endif %} nav-link" href="{% url 'show_cart' %}">
+                        <div class="text-center">
+                            <div>
+                                <i class="fa-duotone fa-cart-shopping fa-lg"></i>
+                              <span class="ms-2">
+                                {% if order_total %}
+                                      {{ order_total|floatformat:2 }} <i class="fas fa-euro-sign"></i>
+                                  {% else %}
+                                      0.00 <i class="fas fa-euro-sign"></i>
+                                  {% endif %}
+                              </span>   
+                            </div>                           
+                        </div>
+                    </a>
+                </li>
                 <span class="navbar-text text-muted">
                     Style so good only time will tell.
                 </span>
@@ -93,7 +110,6 @@
             alert.close();
         }, 3000);
     </script>
-    <script src="https://kit.fontawesome.com/23a0e3507f.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
