@@ -83,7 +83,7 @@ def checkout(request):
         cart = request.session.get('cart', {})
         if not cart:
             messages.error(request, "There's nothing in your shopping cart at this moment")
-            return redirect(reverse('products'))
+            return redirect(reverse('shop'))
 
         current_cart = cart_content(request)
         order_total = current_cart['order_total']
@@ -100,7 +100,7 @@ def checkout(request):
         messages.warning(request, 'Stripe public key is missing. \
             Did you forget to set it in your environment?')
 
-    template = 'checkout/checkout.html'
+    template = 'checkout.html'
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
