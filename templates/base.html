@@ -51,23 +51,23 @@
                         <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
+                    <li class="list-inline-item">
+                        <a class="{% if total %}text-black-orange fs-5 fw-bold{% else %}text-black{% endif %} nav-link" href="{% url 'show_cart' %}">
+                            <div class="text-center">
+                                <div>
+                                    <i class="fa-duotone fa-cart-shopping fa-lg"></i>
+                                  <span class="ms-2">
+                                    {% if order_total %}
+                                          {{ order_total|floatformat:2 }} <i class="fas fa-euro-sign"></i>
+                                      {% else %}
+                                          0.00 <i class="fas fa-euro-sign"></i>
+                                      {% endif %}
+                                  </span>   
+                                </div>                           
+                            </div>
+                        </a>
+                    </li>
                 </ul>
-                <li class="list-inline-item">
-                    <a class="{% if total %}text-black-orange fs-5 fw-bold{% else %}text-black{% endif %} nav-link" href="{% url 'show_cart' %}">
-                        <div class="text-center">
-                            <div>
-                                <i class="fa-duotone fa-cart-shopping fa-lg"></i>
-                              <span class="ms-2">
-                                {% if order_total %}
-                                      {{ order_total|floatformat:2 }} <i class="fas fa-euro-sign"></i>
-                                  {% else %}
-                                      0.00 <i class="fas fa-euro-sign"></i>
-                                  {% endif %}
-                              </span>   
-                            </div>                           
-                        </div>
-                    </a>
-                </li>
                 <span class="navbar-text text-muted">
                     Style so good only time will tell.
                 </span>
@@ -75,7 +75,7 @@
         </div>
     </nav>
 
-    <div class="constainer">
+    <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 {% for message in messages %}

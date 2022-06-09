@@ -6,7 +6,7 @@ from django.conf import settings
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
-from cart.contexts import cart_content
+from cart.contents import cart_content
 
 import stripe
 import json

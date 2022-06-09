@@ -25,7 +25,7 @@ def cart_content(request):
         })
         product_count = len(cart_items)
     
-    context = {
+    content = {
         'cart_items': cart_items,
         'product_count': product_count,
         'order_total': order_total,
@@ -33,4 +33,4 @@ def cart_content(request):
         'delivery': delivery,
     }
 
-    return context
+    return content

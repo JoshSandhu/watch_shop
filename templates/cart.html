@@ -2,8 +2,6 @@
 {% load static %}
 {% load cart_tools %}
 
-{% block extra_title %}Shopping Cart{% endblock %}
-
 
 {% block content %}
 <div class="row main-content">
@@ -30,7 +28,6 @@
                                                 href="{% url 'product_details' item.product.ean_code %}">
                                                 <p class="my-0"><strong class="fw-bold fs-5">{{ item.product.name }}</strong></p>
                                                 <p class="my-0 small text-muted">EAN: {{ item.product.ean_code }}</p>
-                                                <p class="my-0 small text-muted">Season: {{ item.product.category.display_name }}</p>
                                             </a>
                                         </td>
                                         <td class="py-3 text-black-orange">

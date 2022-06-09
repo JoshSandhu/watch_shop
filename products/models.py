@@ -13,11 +13,11 @@ STATUS = ((0, "Draft"), (1, "Available"))
 
 class Product(models.Model):
     title = models.CharField(max_length=200)
-    ean_code = models.CharField(max_length=13, validators=[MinLengthValidator(13)], null=False, blank=False)
+    ean_code = models.CharField(max_length=19, validators=[MinLengthValidator(19)], null=False, blank=False)
     slug = models.SlugField(max_length=200, unique=True)
     brand = models.CharField(max_length=200)
     updated_on = models.DateTimeField(auto_now=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="price")
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)

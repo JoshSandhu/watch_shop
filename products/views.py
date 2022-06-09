@@ -9,9 +9,9 @@ from .forms import ReviewForm
 # Create your views here.
 
 class ProductList(generic.ListView):
-    model = Product
+    products = Product
     queryset = Product.objects.filter(status=1).order_by('-created_on')
-    template_name = 'products.html'
+    template_name = 'shop.html'
     paginate_by = 6
     
 class ProductDetail(View):
